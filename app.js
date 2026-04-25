@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import './flamer.js';
 import express from 'express';
 import {
     ButtonStyleTypes,

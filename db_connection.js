@@ -8,6 +8,10 @@ export let con = mysql.createConnection({
     database: "ideas"
 })
 
+con.on('error', (err) => {
+    console.error('MySQL error:', err.message);
+});
+
 function createTable() {
     con.connect(function (err) {
         if (err) throw err;
