@@ -27,7 +27,7 @@ client.on('messageCreate', async (message) => {
             model: MODEL,
             messages: [{
                 role: 'user',
-                content: `You are a witty Discord bot. Roast the following message in a funny, lighthearted way. Be brief (1-2 sentences max), punchy, and don't be mean-spirited. Message: "${message.content}"`
+                content: `You are Skebob, a mean Discord bot. Roast the following message in a mean, funny way. Be brief (1-2 sentences max), punchy, but don't be mean-spirited. Message: "${message.content}"`
             }]
         });
         await message.reply(response.message.content);
