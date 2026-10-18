@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import './flamer.js';
 import express from 'express';
 import {
     ButtonStyleTypes,
@@ -8,7 +9,7 @@ import {
     MessageComponentTypes,
     verifyKeyMiddleware,
 } from 'discord-interactions';
-import {getRandomEmoji, DiscordRequest, getHeadTail, makesRow, chooseFromList, getResultInsert} from './utils.js';
+import {getRandomEmoji, DiscordRequest, getHeadTail, makesRow, chooseFromList, getResultInsert, makeTournament} from './utils.js';
 
 // Create an express app
 const app = express();
@@ -115,6 +116,21 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             })
         }
 
+
+        if (name === 'tournament') {
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            content: makeTournament(data.options?.[0].value)
+                        }
+                    ]
+                }
+            })
+        }
 
         console.error(`unknown command: ${name}`);
         return res.status(400).json({ error: 'unknown command' });

@@ -87,6 +87,20 @@ const ALL_IDEAS = {
     type: 1
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, COINFLIP, SACRIFICE, SAVE_IDEA, FETCH_IDEA, ALL_IDEAS];
+const TOURNAMENT = {
+    name: 'tournament',
+    description: 'Makes a fair random tournament bracket from mentioned players',
+    type: 1,
+    options: [
+        {
+            name: "players",
+            description: "mention everyone playing, e.g. @a @b @c",
+            type: 3,
+            required: true,
+        }
+    ]
+}
+
+const ALL_COMMANDS = [TEST_COMMAND, COINFLIP, SACRIFICE, SAVE_IDEA, FETCH_IDEA, ALL_IDEAS, TOURNAMENT];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
